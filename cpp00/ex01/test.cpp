@@ -12,6 +12,8 @@
 
 #include <iostream>
 #include  "classs.hpp"
+#include <iomanip>
+
 
 
 ////////// ste //////////
@@ -38,29 +40,27 @@ void Contact :: setDarkestSecret(std::string str)
 }
 
 /////// get /////////
-void Contact :: getFirstName()
+std::string Contact :: getFirstName()
 {
-    std::cout << first_name;
+    return first_name;
 }
-void Contact :: getLastName()
+std::string Contact :: getLastName()
 {
-    std::cout << last_name;
+    return last_name ;
 }
-void Contact :: getNickname()
+std::string Contact :: getNickname()
 {
-    std::cout << nickname;
+    return nickname ;
 }
-void Contact :: getPhoneNumber()
+std::string Contact :: getPhoneNumber()
 {
-    std::cout << phone_number;
+    return phone_number ;
 }
-void Contact :: getDarkestSecret()
+std::string Contact :: getDarkestSecret()
 {
-    std::cout << darkest_secret;
+    return phone_number ;
 }
 ///////////////////////
-
-
 
 std::string inputLine(std::string com)
 {
@@ -78,29 +78,69 @@ void PhoneBook :: setindx(int n)
 }
 void PhoneBook :: setContact()
 {
-    contact[indx].setFirstName(inputLine("enter the first name :\n"));
-    contact[indx].setLastName(inputLine("enter the last name :\n"));
-    contact[indx].setNickname(inputLine("enter the nickname :\n"));
-    contact[indx].setPhoneNumber(inputLine("enter the phone number: \n"));
-    contact[indx].setDarkestSecret(inputLine("enter the darkest secret :\n"));
+    
+    contact[(indx)%8].setFirstName(inputLine("enter the first name : "));
+    contact[(indx)%8].setLastName(inputLine("enter the last name : "));
+    contact[(indx)%8].setNickname(inputLine("enter the nickname : "));
+    contact[(indx)%8].setPhoneNumber(inputLine("enter the phone number: "));
+    contact[(indx)%8].setDarkestSecret(inputLine("enter the darkest secret : "));
     indx++;
     std::cout <<"added successfully\n";
 }
+
+void PhoneBook :: getContactitems(int n)
+{
+    std::cout << "|"<< n << "         |";
+    if (contact[n].getFirstName().length() >= 10)
+		std::cout << contact[n].getFirstName().substr(0,9) << "." << "|";
+	else
+	    std::cout << std::right << std::setw(10) << contact[n].getFirstName() << "|";
+
+    if (contact[n].getLastName().length() >= 10)
+		std::cout << contact[n].getLastName().substr(0,9) << "." << "|";
+	else
+	    std::cout << std::right << std::setw(10) << contact[n].getLastName() << "|";
+
+    if (contact[n].getNickname().length() >= 10)
+		std::cout << contact[n].getNickname().substr(0,9) << "." << "|";
+	else
+	    std::cout << std::right << std::setw(10) << contact[n].getNickname() << "|\n";
+
+}
 void PhoneBook :: getContact(int n)
 {
-    std::cout << "|" << n <<"|";
-    contact[n].getFirstName();
-    std::cout << "|";
-    contact[n].getLastName();
-    std::cout << "|";
-    contact[n].getNickname();
-    std::cout << "|";
-    std::cout << "\n";
-  
+    
+    std::cout << contact[n].getFirstName() <<"\n";
+    std::cout << contact[n].getLastName() << "\n";
+    std::cout << contact[n].getNickname()<<"\n";
+    std::cout << contact[n].getPhoneNumber()<<"\n";
+    std::cout << contact[n].getDarkestSecret() <<"\n";
 }
 int PhoneBook :: getindx()
 {
     return indx;
+}
+void enter_indx(const std::string& str, PhoneBook& phonebook) {
+    int i = 0;
+    int indx = 0;
+    
+    // Convert the string to an integer
+    while (str[i]) {
+        if (isdigit(str[i])) {  // Ensure we are working with numeric characters
+            indx = (indx * 10) + (str[i] - '0');
+        } else {
+            std::cout << "Invalid index input.\n";
+            return;
+        }
+        i++;
+    }
+    
+    // Check if the index is within the valid range
+    if (indx >= 0 && indx < phonebook.getindx() ) {
+        phonebook.getContact(indx);
+    } else {
+        std::cout << "Bad index\n";
+    }
 }
 
 int main()
@@ -117,38 +157,20 @@ int main()
         if(line == "ADD")
         {
             phonebook.setContact();
-            // cont.setFirstName(inputLine("enter the first name :\n"));
-            // cont.setLastName(inputLine("enter the last name :\n"));
-            
-            // cont.setValues();
-            // std::cout << "enter the first name :\n";
-            // std::cin >> first_name;
-            // std::cout << "enter the last name :\n";
-            // std::cin >> last_name;
-            // std::cout << "enter the nickname :\n";
-            // std::cin >> nickname;
-            // std::cout << "enter the phone number: \n";
-            // std::cin >> phone_number;
-            // std::cout << "enter the darkest secret :\n";
-            // std::cin >> darkest_secret;
-            // if(first_name.empty() || last_name.empty()|| nickname.empty() || phone_number.empty() || darkest_secret.empty())
-            //     std::cout << "is empty";
         }
         else if(line=="SEARCH")
         {
             int i =0;
             std::string index_line;
-            std::cout << "|" << "index" <<"|"<< "first name"<< "|"<< "last name" << "|"<< "nickname"<< "|\n";
-            while (phonebook.getindx()>i)
+            std::cout << "|" << "     index" <<"|"<< "first name"<< "|"<< " last name" << "|"<< "  nickname"<< "|\n";
+            while ((phonebook.getindx() <8 && phonebook.getindx()>i) || (phonebook.getindx() >=8 && 8 > i ) )
             {
-                phonebook.getContact(i++);
+                phonebook.getContactitems(i++);
             }
             
-            std::cout  << "enter the index";
+            std::cout  << "enter the index : ";
             std::getline(std::cin, index_line);
-            i = atoi(index_line)
-            if(i>=0&&i<=phonebook.getindx())
-                phonebook.getContact(i);
+            enter_indx(index_line,phonebook);
         }
         else if(line=="EXIT")
         {

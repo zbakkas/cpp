@@ -12,11 +12,11 @@ class Contact
         void setNickname(std::string str);
         void setPhoneNumber(std::string str);
         void setDarkestSecret(std::string str);
-        void getFirstName();
-        void getLastName();
-        void getNickname();
-        void getPhoneNumber();
-        void getDarkestSecret();
+        std::string getFirstName();
+        std::string getLastName();
+        std::string getNickname();
+        std::string getPhoneNumber();
+        std::string getDarkestSecret();
 
 
 };
@@ -31,6 +31,7 @@ class PhoneBook
         void setindx(int n);
         void setContact();
         void getContact(int n);
+        void getContactitems(int n);
         int getindx();
 };
 #endif

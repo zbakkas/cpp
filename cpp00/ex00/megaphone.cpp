@@ -21,10 +21,6 @@ int main(int arc , char **arv)
    if(arc >1)
    {
       x = 1;
-      loop()
-      {
-         
-      }
       while (x < arc)
       {
          i = 0;
