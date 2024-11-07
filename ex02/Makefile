@@ -12,6 +12,8 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
+%.o:%.cpp Account.hpp
+	$(CPP) $(CFLAGS) -c $< -o $@ 
 
 clean:
 	rm -f $(OBJ)

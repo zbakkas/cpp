@@ -12,6 +12,9 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CPP) $(CFLAGS) $(OBJ) -o $(NAME)
 
+%.o:%.cpp classs.hpp
+	$(CPP) $(CFLAGS) -c $< -o $@ 
+
 clean:
 	rm -f $(OBJ)
 

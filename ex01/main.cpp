@@ -6,7 +6,7 @@
 /*   By: zbakkas <zouhirbakkas@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:44:42 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/11/07 16:58:14 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/11/07 18:27:16 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 
 void enter_indx(const std::string& str, PhoneBook& phonebook) {
-    int i = 0;
     int indx = 0 ;
     if(str.length()==1)
     {
