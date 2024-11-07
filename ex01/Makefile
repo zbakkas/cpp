@@ -1,6 +1,6 @@
 CPP = c++
-FLAGS =  -Wall -Wextra -Werror -std=c++98
-FILES = test.cpp
+CFLAGS =  -Wall -Wextra -Werror -std=c++98
+FILES = phonebook.cpp main.cpp
 
 OBJ=$(FILES:.cpp=.o)
 
@@ -10,7 +10,7 @@ all: $(NAME)
 
 
 $(NAME): $(OBJ)
-	$(CPP) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CPP) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	rm -f $(OBJ)
