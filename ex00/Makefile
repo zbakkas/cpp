@@ -1,5 +1,5 @@
-CC = c++
-FLAGS =  -Wall -Wextra -Werror -std=c++98
+CPP = c++
+CFLAGS =  -Wall -Wextra -Werror -std=c++98
 FILES = megaphone.cpp
 
 OBJ=$(FILES:.cpp=.o)
@@ -10,7 +10,7 @@ all: $(NAME)
 
 
 $(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	$(CPP) $(CFLAGS) $(OBJ) -o $(NAME)
 	
 %.o:%.cpp
 	$(CPP) $(CFLAGS) -c $< -o $@ 
