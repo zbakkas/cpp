@@ -6,7 +6,7 @@
 /*   By: zbakkas <zouhirbakkas@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:11:59 by zbakkas           #+#    #+#             */
-/*   Updated: 2024/11/07 18:49:44 by zbakkas          ###   ########.fr       */
+/*   Updated: 2024/11/09 16:14:37 by zbakkas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void PhoneBook :: getContactitems(int n)
 	    std::cout << std::right << std::setw(10) << contact[n].getLastName() << "|";
 
     if (contact[n].getNickname().length() > 10)
-		std::cout << contact[n].getNickname().substr(0,9) << "." << "|";
+		std::cout << contact[n].getNickname().substr(0,9) << "." << "|\n";
 	else
 	    std::cout << std::right << std::setw(10) << contact[n].getNickname() << "|\n";
 
